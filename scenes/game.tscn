@@ -12,7 +12,10 @@ texture = ExtResource("1_hn7ib")
 
 [node name="Player" parent="." instance=ExtResource("1_jiuor")]
 scale = Vector2(3, 3)
+speed = Vector2(500, 500)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1.50572, 1.50572)
 zoom = Vector2(0.172, 0.172)
+
+[node name="Projectiles" type="Node" parent="."]

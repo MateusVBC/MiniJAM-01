@@ -9,9 +9,13 @@ radius = 14.0357
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1, 0.969098)
 script = ExtResource("1_cda6g")
+speed = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_q13as")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_usex3")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 16.5102)
