@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://nhn45how7fvx"]
+
+[ext_resource type="Texture2D" uid="uid://2kmk8peti2id" path="res://sprites/background/degrade.png" id="1_hn7ib"]
+[ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.62939e-06, -7.62939e-06)
+scale = Vector2(33.6424, 33.6424)
+texture = ExtResource("1_hn7ib")
+
+[node name="Player" parent="." instance=ExtResource("1_jiuor")]
+scale = Vector2(3, 3)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.50572, 1.50572)
+zoom = Vector2(0.172, 0.172)
