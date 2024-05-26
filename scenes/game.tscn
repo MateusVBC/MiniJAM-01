@@ -3,21 +3,21 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
 [ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="2_7tfmd"]
-[ext_resource type="Texture2D" uid="uid://bv6v05bnw63lp" path="res://sprites/background/degrade_no_dithering.png" id="2_xelk3"]
+[ext_resource type="Texture2D" uid="uid://dvrjqe6c1ylee" path="res://assets/sprites/background/degrade_no_dithering.png" id="2_xelk3"]
 [ext_resource type="Script" path="res://scripts/spawn_info.gd" id="3_bbwdo"]
 [ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
 [ext_resource type="PackedScene" uid="uid://cbyfeyy773i1e" path="res://scenes/deep_level.tscn" id="8_03jb3"]
 [ext_resource type="Script" path="res://scripts/deepness.gd" id="8_dvuap"]
 
-[sub_resource type="Resource" id="Resource_inbqn"]
+[sub_resource type="Resource" id="Resource_2vgdg"]
 script = ExtResource("3_bbwdo")
 deep_start = 1
-deep_end = 5
+deep_end = 2
 enemy = ExtResource("4_7e6m4")
-enemy_num = 2
-enemy_spawn_delay = 1
-enemy_spawn_side = 1
+enemy_num = 20
+enemy_spawn_delay = 0
+enemy_spawn_side = Array[int]([0])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
 size = Vector2(33395, 4058)
@@ -36,7 +36,7 @@ texture = ExtResource("2_xelk3")
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_7tfmd")
-spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_inbqn")])
+spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_2vgdg")])
 
 [node name="Timer" type="Timer" parent="Enemies"]
 autostart = true
@@ -44,8 +44,6 @@ autostart = true
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("4_ywabj")]
-position = Vector2(0, -164593)
-zoom = Vector2(1, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_jiuor")]
 position = Vector2(-1.90735e-06, -167563)

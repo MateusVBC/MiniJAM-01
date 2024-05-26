@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m0f7mqart4sq"
-path="res://.godot/imported/butterflyfish.png-225ee4e1319b6390a376481a0dc24252.ctex"
+uid="uid://dvrjqe6c1ylee"
+path="res://.godot/imported/degrade_no_dithering.png-0b7d7b0d100367975b647dc5f135dbff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/butterflyfish.png"
-dest_files=["res://.godot/imported/butterflyfish.png-225ee4e1319b6390a376481a0dc24252.ctex"]
+source_file="res://assets/sprites/background/degrade_no_dithering.png"
+dest_files=["res://.godot/imported/degrade_no_dithering.png-0b7d7b0d100367975b647dc5f135dbff.ctex"]
 
 [params]
 

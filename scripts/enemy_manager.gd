@@ -38,12 +38,10 @@ func get_random_position(spawn_side):
 	var spawn_pos1 = Vector2.ZERO
 	var spawn_pos2 = Vector2.ZERO
 	
-	if not spawn_side is Array && spawn_side == SpawnInfo.SIDES.NONE:
+	if spawn_side.size() == 0:
 		pos_side = randi_range(1,3);
-	elif spawn_side is Array:
-		pos_side = spawn_side.pick_random();
 	else:
-		pos_side = spawn_side;
+		pos_side = spawn_side.pick_random();
 	
 	match pos_side:
 		SpawnInfo.SIDES.BOTTOM:

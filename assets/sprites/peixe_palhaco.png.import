@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciwoyubrnbxxa"
-path="res://.godot/imported/peixe_palhaco.png-49cf2a4c9b9ebe5bae77af0c984ddb16.ctex"
+path="res://.godot/imported/peixe_palhaco.png-6c8839af5a351174893e9a3a653c28b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/peixe_palhaco.png"
-dest_files=["res://.godot/imported/peixe_palhaco.png-49cf2a4c9b9ebe5bae77af0c984ddb16.ctex"]
+source_file="res://assets/sprites/peixe_palhaco.png"
+dest_files=["res://.godot/imported/peixe_palhaco.png-6c8839af5a351174893e9a3a653c28b7.ctex"]
 
 [params]
 

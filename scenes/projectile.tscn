@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d11ox2w5cfcwt"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_3hwxw"]
-[ext_resource type="Texture2D" uid="uid://dxg7333ek6rrw" path="res://sprites/player/shoot.png" id="2_vkyhj"]
+[ext_resource type="Texture2D" uid="uid://dn10vqgn7l3ye" path="res://assets/sprites/projectiles/shoot_player.png" id="2_yf61u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2vch"]
 radius = 5.0
@@ -19,6 +19,6 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_j2vch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_vkyhj")
+texture = ExtResource("2_yf61u")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

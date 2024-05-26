@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2kmk8peti2id"
-path="res://.godot/imported/degrade.png-505d66d6251193e0441cd95e67905d25.ctex"
+uid="uid://cdsbiwrjl7hty"
+path="res://.godot/imported/navalmine.png-c520ca8d586f6ec1f77887f5b4558656.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/background/degrade.png"
-dest_files=["res://.godot/imported/degrade.png-505d66d6251193e0441cd95e67905d25.ctex"]
+source_file="res://assets/sprites/enemies/navalmine.png"
+dest_files=["res://.godot/imported/navalmine.png-c520ca8d586f6ec1f77887f5b4558656.ctex"]
 
 [params]
 

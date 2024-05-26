@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdsbiwrjl7hty"
-path="res://.godot/imported/navalmine.png-36000c198d1e74a101cde74174f01d1c.ctex"
+uid="uid://rjt62yrhk4xu"
+path="res://.godot/imported/navalmine.png-0a273a42b9c88d66104de1533e869642.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/navalmine.png"
-dest_files=["res://.godot/imported/navalmine.png-36000c198d1e74a101cde74174f01d1c.ctex"]
+source_file="res://assets/sprites/projectiles/navalmine.png"
+dest_files=["res://.godot/imported/navalmine.png-0a273a42b9c88d66104de1533e869642.ctex"]
 
 [params]
 

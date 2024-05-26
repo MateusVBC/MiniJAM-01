@@ -17,7 +17,11 @@ var projectile_scene = preload("res://scenes/projectile.tscn");
 
 var shoot_cd := false;
 var damage_cd := false;
-	
+var move_player_camera := true;
+
+func _ready():
+	camera.connect("stop_moving_player", func(): move_player_camera = false)
+
 #camera max zoom = 0,174
 func _physics_process(delta):
 	global_position += (
@@ -53,7 +57,8 @@ func _process(delta):
 			shoot_cd = false
 	
 	#movimento da camera
-	global_position.y += 2
+	if move_player_camera:
+		global_position.y += 2
 
 func take_damage(damage):
 	if !damage_cd:

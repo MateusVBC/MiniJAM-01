@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dywiebyx74ttq"
-path="res://.godot/imported/swordfish.png-00bde8181512af1db9efe0a64ff9a5ae.ctex"
+uid="uid://m0f7mqart4sq"
+path="res://.godot/imported/butterflyfish.png-2429ebd6bb4891d508caee71514df400.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/swordfish.png"
-dest_files=["res://.godot/imported/swordfish.png-00bde8181512af1db9efe0a64ff9a5ae.ctex"]
+source_file="res://assets/sprites/butterflyfish.png"
+dest_files=["res://.godot/imported/butterflyfish.png-2429ebd6bb4891d508caee71514df400.ctex"]
 
 [params]
 

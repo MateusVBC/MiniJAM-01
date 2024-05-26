@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rjt62yrhk4xu"
-path="res://.godot/imported/navalmine.png-1c7aea73bed75e1c7679b38cf71f4c2b.ctex"
+uid="uid://fec5hh623b3x"
+path="res://.godot/imported/swordfish.png-87ec1d4ba63b9bcf5b6862ea3000215f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/projectiles/navalmine.png"
-dest_files=["res://.godot/imported/navalmine.png-1c7aea73bed75e1c7679b38cf71f4c2b.ctex"]
+source_file="res://assets/sprites/enemies/swordfish.png"
+dest_files=["res://.godot/imported/swordfish.png-87ec1d4ba63b9bcf5b6862ea3000215f.ctex"]
 
 [params]
 

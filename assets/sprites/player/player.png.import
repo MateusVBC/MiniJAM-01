@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fec5hh623b3x"
-path="res://.godot/imported/swordfish_shooter.png-d1bacf4c37b834a872d83904817a5cdc.ctex"
+uid="uid://b6wdd0c2r3k6w"
+path="res://.godot/imported/player.png-65b4e4a8f251ccdb19a5076e652a4f66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/swordfish_shooter.png"
-dest_files=["res://.godot/imported/swordfish_shooter.png-d1bacf4c37b834a872d83904817a5cdc.ctex"]
+source_file="res://assets/sprites/player/player.png"
+dest_files=["res://.godot/imported/player.png-65b4e4a8f251ccdb19a5076e652a4f66.ctex"]
 
 [params]
 

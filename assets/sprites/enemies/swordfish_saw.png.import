@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv6v05bnw63lp"
-path="res://.godot/imported/degrade_no_dithering.png-6db54b7024529572959d3a13b14e1dd6.ctex"
+uid="uid://diwxhb0kokqu7"
+path="res://.godot/imported/swordfish_saw.png-97378d5c1491e0ca130ed98117a832b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/background/degrade_no_dithering.png"
-dest_files=["res://.godot/imported/degrade_no_dithering.png-6db54b7024529572959d3a13b14e1dd6.ctex"]
+source_file="res://assets/sprites/enemies/swordfish_saw.png"
+dest_files=["res://.godot/imported/swordfish_saw.png-97378d5c1491e0ca130ed98117a832b7.ctex"]
 
 [params]
 

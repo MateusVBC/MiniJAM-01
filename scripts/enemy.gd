@@ -1,7 +1,10 @@
 extends Area2D
 
+signal enemy_death(enemy);
+
 @export var speed := Vector2(3.0, -0.5);
 @export var melee_damage := 1;
+
 @onready var health = $HealthComponent;
 @onready var cshape = $CollisionShape2D
 
@@ -21,8 +24,7 @@ func _on_area_entered(area):
 	area.take_damage(melee_damage);
 
 func _on_death(entity):
-	#toca animação de morte
-	pass # Replace with function body.
+	emit_signal("enemy_death", self);
 
 func _on_agro_entered(area):
 	if player == null:

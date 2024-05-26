@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_v2ky4"]
 [ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="1_v8cyx"]
-[ext_resource type="Texture2D" uid="uid://dqf1wfvmctqoi" path="res://sprites/enemies/urchin.png" id="3_6r5cx"]
+[ext_resource type="Texture2D" uid="uid://dqf1wfvmctqoi" path="res://assets/sprites/enemies/urchin.png" id="3_6r5cx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bhtjw"]
 radius = 31.1448
