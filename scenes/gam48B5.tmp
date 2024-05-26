@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://nhn45how7fvx"]
+[gd_scene load_steps=13 format=3 uid="uid://nhn45how7fvx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
 [ext_resource type="PackedScene" uid="uid://cbyfeyy773i1e" path="res://scenes/deep_level.tscn" id="8_03jb3"]
-[ext_resource type="Script" path="res://scripts/deepness.gd" id="8_dvuap"]
 
 [sub_resource type="Resource" id="Resource_inbqn"]
 script = ExtResource("3_bbwdo")
@@ -16,8 +15,7 @@ deep_start = 1
 deep_end = 5
 enemy = ExtResource("4_7e6m4")
 enemy_num = 2
-enemy_spawn_delay = 1
-enemy_spawn_side = 1
+enemy_spawn_delay = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
 size = Vector2(33395, 4058)
@@ -30,16 +28,19 @@ size = Vector2(32274.2, 49164.7)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ifo3a")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(33.6424, 33.6424)
-texture = ExtResource("2_xelk3")
-
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_7tfmd")
 spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_inbqn")])
 
-[node name="Timer" type="Timer" parent="Enemies"]
-autostart = true
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_7e6m4")]
+position = Vector2(-384, -163072)
+scale = Vector2(4, 4)
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_7e6m4")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(33.6424, 33.6424)
+texture = ExtResource("2_xelk3")
 
 [node name="Projectiles" type="Node" parent="."]
 
@@ -52,52 +53,44 @@ position = Vector2(-1.90735e-06, -167563)
 scale = Vector2(3, 3)
 speed = Vector2(5, 5)
 
-[node name="Deepness" type="Node" parent="."]
-script = ExtResource("8_dvuap")
+[node name="Deep" type="Node" parent="."]
 
-[node name="DeepLevel1" parent="Deepness" instance=ExtResource("8_03jb3")]
+[node name="DeepLevel1" parent="Deep" instance=ExtResource("8_03jb3")]
 position = Vector2(88, -162050)
 collision_layer = 0
-level = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deep/DeepLevel1"]
 shape = SubResource("RectangleShape2D_c0rlt")
 
-[node name="DeepLevel2" parent="Deepness" instance=ExtResource("8_03jb3")]
+[node name="DeepLevel2" parent="Deep" instance=ExtResource("8_03jb3")]
 position = Vector2(240, -134124)
 scale = Vector2(1.0083, 1.36537)
 collision_layer = 0
-level = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deep/DeepLevel2"]
 position = Vector2(-126.947, 5812.34)
 shape = SubResource("RectangleShape2D_vd7ia")
 
-[node name="DeepLevel3" parent="Deepness" instance=ExtResource("8_03jb3")]
+[node name="DeepLevel3" parent="Deep" instance=ExtResource("8_03jb3")]
 position = Vector2(0, -53720)
 collision_layer = 0
-level = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deep/DeepLevel3"]
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_f4lbg")
 
-[node name="DeepLevel4" parent="Deepness" instance=ExtResource("8_03jb3")]
+[node name="DeepLevel4" parent="Deep" instance=ExtResource("8_03jb3")]
 position = Vector2(128, -26064)
 collision_layer = 0
-level = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deep/DeepLevel4"]
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
 
-[node name="DeepLevel5" parent="Deepness" instance=ExtResource("8_03jb3")]
+[node name="DeepLevel5" parent="Deep" instance=ExtResource("8_03jb3")]
 position = Vector2(0, 149040)
 collision_layer = 0
-level = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deep/DeepLevel5"]
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
-
-[connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_timer_timeout"]

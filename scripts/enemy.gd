@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed := Vector2(3.0, -1.0);
+@export var speed := Vector2(3.0, -0.5);
 @export var melee_damage := 1;
 @onready var health = $HealthComponent;
 @onready var cshape = $CollisionShape2D
@@ -42,3 +42,8 @@ func get_axis_player() -> int:
 		return -1 
 	else:
 		return 0 
+
+func _on_screen_exited():
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
+	pass # Replace with function body.

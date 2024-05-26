@@ -30,7 +30,10 @@ shape = SubResource("CircleShape2D_vb1tc")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_6r5cx")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_death"]
 [connection signal="area_entered" from="Agro" to="." method="_on_agro_entered"]
 [connection signal="area_exited" from="Agro" to="." method="_on_agro_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

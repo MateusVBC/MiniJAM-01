@@ -1,21 +1,18 @@
 extends Node2D
 
-@export var spawns: Array[Spawn_info] = []
+@export var spawns: Array[SpawnInfo] = [];
 
-@onready var player = get_tree().get_first_node_in_group("player")
-
-@export var time = 0
-
-signal changetime(time)
-
-func _ready():
-	connect("changetime",Callable(player,"change_time"))
+@onready var player = $"../Player"
+@onready var deepness = $"../Deepness"
+@onready var camera = $"../Camera"
 
 func _on_timer_timeout():
-	time += 1
 	var enemy_spawns = spawns
 	for spawn_info in enemy_spawns:
-		if time >= spawn_info.level_start and time <= spawn_info.level_end:
+		if (
+			deepness.current_level >= spawn_info.deep_start &&
+			deepness.current_level <= spawn_info.deep_end
+		):
 			if spawn_info.spawn_delay_counter < spawn_info.enemy_spawn_delay:
 				spawn_info.spawn_delay_counter += 1
 			else:
@@ -24,32 +21,38 @@ func _on_timer_timeout():
 				var counter = 0
 				while  counter < spawn_info.enemy_num:
 					var enemy_spawn = new_enemy.instantiate()
-					enemy_spawn.global_position = get_random_position()
+					enemy_spawn.global_position = get_random_position(spawn_info.enemy_spawn_side)
 					add_child(enemy_spawn)
 					counter += 1
-	emit_signal("changetime",time)
 
-func get_random_position():
+func get_random_position(spawn_side):
 	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
-	var top_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y - vpr.y/2)
-	var top_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y - vpr.y/2)
-	var bottom_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y + vpr.y/2)
-	var bottom_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y + vpr.y/2)
-	var pos_side = ["down", "right", "left"].pick_random()
+	var camera_width = (vpr.x / camera.zoom.x);
+	var camera_height = (vpr.y / camera.zoom.y);
+	
+	var top_left = Vector2(player.global_position.x - camera_width/2, player.global_position.y - camera_height)
+	var top_right = Vector2(player.global_position.x + camera_width/2, player.global_position.y - camera_height)
+	var bottom_left = Vector2(player.global_position.x - camera_width/2, player.global_position.y + camera_height)
+	var bottom_right = Vector2(player.global_position.x + camera_width/2, player.global_position.y + camera_height)
+	var pos_side = 0;
 	var spawn_pos1 = Vector2.ZERO
 	var spawn_pos2 = Vector2.ZERO
 	
+	if not spawn_side is Array && spawn_side == SpawnInfo.SIDES.NONE:
+		pos_side = randi_range(1,3);
+	elif spawn_side is Array:
+		pos_side = spawn_side.pick_random();
+	else:
+		pos_side = spawn_side;
+	
 	match pos_side:
-		"up":
-			spawn_pos1 = top_left
-			spawn_pos2 = top_right
-		"down":
+		SpawnInfo.SIDES.BOTTOM:
 			spawn_pos1 = bottom_left
 			spawn_pos2 = bottom_right
-		"right":
+		SpawnInfo.SIDES.RIGHT:
 			spawn_pos1 = top_right
 			spawn_pos2 = bottom_right
-		"left":
+		SpawnInfo.SIDES.LEFT:
 			spawn_pos1 = top_left
 			spawn_pos2 = bottom_left
 	

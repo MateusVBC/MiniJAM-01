@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbyfeyy773i1e"]
+
+[ext_resource type="Script" path="res://scripts/deep_level.gd" id="1_hefyk"]
+
+[node name="DeepLevel" type="Area2D"]
+script = ExtResource("1_hefyk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
