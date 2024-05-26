@@ -1,15 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://nhn45how7fvx"]
+[gd_scene load_steps=9 format=3 uid="uid://nhn45how7fvx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
+[ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="2_7tfmd"]
 [ext_resource type="Texture2D" uid="uid://bv6v05bnw63lp" path="res://sprites/background/degrade_no_dithering.png" id="2_xelk3"]
-[ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemy.tscn" id="4_7e6m4"]
+[ext_resource type="Script" path="res://scripts/spawn_info.gd" id="3_bbwdo"]
+[ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
+
+[sub_resource type="Resource" id="Resource_inbqn"]
+script = ExtResource("3_bbwdo")
+deep_start = 1
+deep_end = 5
+enemy = ExtResource("4_7e6m4")
+enemy_num = 2
+enemy_spawn_delay = 3
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ifo3a")
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("2_7tfmd")
+spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_inbqn")])
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("4_7e6m4")]
 position = Vector2(-384, -163072)

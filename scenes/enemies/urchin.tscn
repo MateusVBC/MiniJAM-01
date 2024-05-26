@@ -10,7 +10,7 @@ radius = 31.1448
 [sub_resource type="CircleShape2D" id="CircleShape2D_vb1tc"]
 radius = 399.452
 
-[node name="Enemy" type="Area2D"]
+[node name="Urchin" type="Area2D"]
 scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("1_v2ky4")
