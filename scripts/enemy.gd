@@ -37,8 +37,8 @@ func _take_damage(damage):
 
 func get_axis_player() -> int:
 	if player.global_position.x > global_position.x:
-		return 1  # Ou qualquer valor que você queira retornar quando meu_x for maior
+		return 1  
 	elif player.global_position.x < global_position.x:
-		return -1  # Ou qualquer valor que você queira retornar quando meu_x for menor
+		return -1 
 	else:
-		return 0  # Ou qualquer valor que você queira retornar quando forem iguais
+		return 0 

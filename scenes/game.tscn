@@ -1,28 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://nhn45how7fvx"]
+[gd_scene load_steps=6 format=3 uid="uid://nhn45how7fvx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
 [ext_resource type="Texture2D" uid="uid://bv6v05bnw63lp" path="res://sprites/background/degrade_no_dithering.png" id="2_xelk3"]
 [ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemy.tscn" id="4_7e6m4"]
+[ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ifo3a")
 
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("4_7e6m4")]
+position = Vector2(-384, -163072)
+scale = Vector2(4, 4)
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_7e6m4")]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-7.62939e-06, -7.62939e-06)
 scale = Vector2(33.6424, 33.6424)
 texture = ExtResource("2_xelk3")
 
-[node name="Player" parent="." instance=ExtResource("1_jiuor")]
-scale = Vector2(3, 3)
-speed = Vector2(5, 5)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(1.50572, 1.50572)
-
 [node name="Projectiles" type="Node" parent="."]
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Camera" parent="." instance=ExtResource("4_ywabj")]
+position = Vector2(0, -164593)
+zoom = Vector2(1, 1)
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("4_7e6m4")]
-position = Vector2(-412, 468)
+[node name="Player" parent="." instance=ExtResource("1_jiuor")]
+position = Vector2(-1.90735e-06, -167563)
+scale = Vector2(3, 3)
+speed = Vector2(5, 5)

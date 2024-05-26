@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://nhn45how7fvx"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
+[ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
+[ext_resource type="Texture2D" uid="uid://bv6v05bnw63lp" path="res://sprites/background/degrade_no_dithering.png" id="2_xelk3"]
+[ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemy.tscn" id="4_7e6m4"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ifo3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.62939e-06, -7.62939e-06)
+scale = Vector2(33.6424, 33.6424)
+texture = ExtResource("2_xelk3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.50572, 1.50572)
+
+[node name="Player" parent="Camera2D" instance=ExtResource("1_jiuor")]
+scale = Vector2(1.9924, 1.9924)
+speed = Vector2(5, 5)
+
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_7e6m4")]
+position = Vector2(-412, 468)
