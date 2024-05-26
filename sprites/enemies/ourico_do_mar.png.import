@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rjt62yrhk4xu"
-path="res://.godot/imported/navalmine.png-1c7aea73bed75e1c7679b38cf71f4c2b.ctex"
+uid="uid://b6f5barvhs1wk"
+path="res://.godot/imported/ourico_do_mar.png-36d0394e4d874c2b4c3a9330d87af62f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/projectiles/navalmine.png"
-dest_files=["res://.godot/imported/navalmine.png-1c7aea73bed75e1c7679b38cf71f4c2b.ctex"]
+source_file="res://sprites/enemies/ourico_do_mar.png"
+dest_files=["res://.godot/imported/ourico_do_mar.png-36d0394e4d874c2b4c3a9330d87af62f.ctex"]
 
 [params]
 
