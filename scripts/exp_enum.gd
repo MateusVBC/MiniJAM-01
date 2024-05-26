@@ -1,0 +1,6 @@
+enum EXP_TYPES {
+	DAMAGE,
+	ATK_SPD,
+	MV_SPD,
+	COLECT_RANGE
+}

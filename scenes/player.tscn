@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1vsufhiyg8h1"]
+[gd_scene load_steps=9 format=3 uid="uid://d1vsufhiyg8h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cda6g"]
 [ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="2_0snjm"]
 [ext_resource type="Texture2D" uid="uid://b6wdd0c2r3k6w" path="res://assets/sprites/player/player.png" id="2_e7k0f"]
+[ext_resource type="Texture2D" uid="uid://dx7xx6vfahxlq" path="res://assets/sprites/GUI/exp_background.png" id="4_yoll8"]
+[ext_resource type="Texture2D" uid="uid://dlx33roiu0vlj" path="res://assets/sprites/GUI/exp_progress.png" id="5_x86ir"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q13as"]
 radius = 14.0357
@@ -15,10 +17,6 @@ radius = 22.0907
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_cda6g")
-speed = null
-melee_damage = null
-projectile_damage = null
-loot_range_scale = null
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_0snjm")]
 
@@ -35,16 +33,33 @@ position = Vector2(0, 28)
 scale = Vector2(1, 0.969098)
 
 [node name="LootRange" type="Area2D" parent="." groups=["exp"]]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LootRange"]
 shape = SubResource("CircleShape2D_aqs5f")
 
 [node name="ColletRange" type="Area2D" parent="." groups=["exp"]]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ColletRange"]
 shape = SubResource("CircleShape2D_i2axl")
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="GUILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_under = ExtResource("4_yoll8")
+texture_progress = ExtResource("5_x86ir")
 
 [connection signal="area_entered" from="LootRange" to="." method="_on_loot_range_area_entered"]
 [connection signal="area_entered" from="ColletRange" to="." method="_on_collet_range_area_entered"]

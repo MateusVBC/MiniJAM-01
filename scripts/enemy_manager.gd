@@ -1,10 +1,15 @@
 extends Node2D
 
+signal _enemy_death(exp);
+
 @export var spawns: Array[SpawnInfo] = [];
 
 @onready var player = $"../Player"
 @onready var deepness = $"../Deepness"
 @onready var camera = $"../Camera"
+
+func create_exp_on_enemy_death(exp):
+	emit_signal("_enemy_death", exp);
 
 func _on_timer_timeout():
 	var enemy_spawns = spawns
@@ -22,6 +27,7 @@ func _on_timer_timeout():
 				while  counter < spawn_info.enemy_num:
 					var enemy_spawn = new_enemy.instantiate()
 					enemy_spawn.global_position = get_random_position(spawn_info.enemy_spawn_side)
+					enemy_spawn.connect("enemy_death", create_exp_on_enemy_death);
 					add_child(enemy_spawn)
 					counter += 1
 

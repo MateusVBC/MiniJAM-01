@@ -3,18 +3,22 @@ extends Area2D
 
 signal projectile_shoot(projectile)
 
+const EXP_ENUM = preload("res://scripts/exp_enum.gd");
+var projectile_scene = preload("res://scenes/projectile.tscn");
+
 @onready var muzzle = $Muzzle;
 @onready var health = $HealthComponent;
 @onready var camera = $"../Camera"
 @onready var cshape = $CollisionShape2D;
 @onready var viewport_size = get_viewport_rect().size;
 
-var projectile_scene = preload("res://scenes/projectile.tscn");
-
 var speed := Vector2(300, 250);
 var melee_damage := 5;
+var projectile_damage := 1;
 
-@export var projectile_damage := 1;
+@export var bonus_speed := Vector2(0.0,0.0);
+@export var bonus_damage := 0.0;
+@export var bonus_atack_speed := 0;
 @export var loot_range_scale := 1;
 
 @export var exp_dmg := 0;
@@ -29,14 +33,13 @@ var move_player_camera := true;
 func _ready():
 	camera.connect("stop_moving_player", func(): move_player_camera = false)
 
-#camera max zoom = 0,174
 func _physics_process(delta):
 	global_position += (
 		Vector2(
 			Input.get_axis("move_left", "move_right"),
 			Input.get_axis("move_up", "move_down")
 		)
-		* speed * delta
+		* get_move_speed() * delta
 		);
 	
 	var camera_width = (viewport_size.x / camera.zoom.x) / 2;
@@ -69,14 +72,14 @@ func _process(delta):
 
 func take_damage(damage):
 	if !damage_cd:
-		shoot_cd = true;
+		damage_cd = true;
 		health.take_damage(damage);
 		await get_tree().create_timer(0.5).timeout;
-		shoot_cd = false;
+		damage_cd = false;
 
 func shoot_projectile():
 	var projectile = projectile_scene.instantiate()
-	projectile.melee_damage = projectile_damage;
+	projectile.melee_damage = get_projectile_damage();
 	projectile.global_position = muzzle.global_position;
 	emit_signal("projectile_shoot", projectile); 
 
@@ -84,10 +87,38 @@ func _on_loot_range_area_entered(area):
 	if area.is_in_group("exp"):
 		area.target = self;
 
-enum TYPES{DAMAGE, ATK_SPD, MV_SPD, COLECT_RANGE}
 func _on_collet_range_area_entered(area):
 	if area.is_in_group("exp"):
-		match area.type:
-			area.TYPES.DAMAGE:
-				
-			
+		collect_exp(area.type, area.collect())
+
+func collect_exp(type, exp):
+		match type:
+			EXP_ENUM.EXP_TYPES.DAMAGE:
+				exp_dmg += exp;
+				if exp_dmg >= ceil(bonus_damage) * 2:
+					exp_dmg = 0;
+					bonus_damage += 0.5;
+			EXP_ENUM.EXP_TYPES.ATK_SPD:
+				exp_atk_spd += exp
+				if exp_atk_spd >= ceil(bonus_atack_speed) * 2:
+					exp_atk_spd = 0;
+					bonus_atack_speed += 0.5;
+			EXP_ENUM.EXP_TYPES.MV_SPD:
+				exp_mv_spd += exp
+				if exp_mv_spd >= ceil(bonus_speed.x) * 2:
+					exp_mv_spd = 0;
+					bonus_speed += Vector2(1, 0.5);
+			EXP_ENUM.EXP_TYPES.COLECT_RANGE:
+				exp_clct_rng += exp
+				if exp_clct_rng >= ceil(loot_range_scale) * 50:
+					exp_clct_rng = 0;
+					loot_range_scale += 0.1;
+					
+func get_melee_damage():
+	return melee_damage + (bonus_damage * 2);
+
+func get_projectile_damage():
+	return projectile_damage + bonus_damage;
+
+func get_move_speed():
+	return speed + bonus_speed;

@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://nhn45how7fvx"]
+[gd_scene load_steps=15 format=3 uid="uid://nhn45how7fvx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
 [ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="2_7tfmd"]
-[ext_resource type="Texture2D" uid="uid://dvrjqe6c1ylee" path="res://assets/sprites/background/degrade_no_dithering.png" id="2_xelk3"]
+[ext_resource type="Texture2D" uid="uid://b18afjem4ykd4" path="res://assets/sprites/background/degrade_no_dithering_stars.png" id="2_tjbi6"]
 [ext_resource type="Script" path="res://scripts/spawn_info.gd" id="3_bbwdo"]
 [ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
 [ext_resource type="PackedScene" uid="uid://cbyfeyy773i1e" path="res://scenes/deep_level.tscn" id="8_03jb3"]
 [ext_resource type="Script" path="res://scripts/deepness.gd" id="8_dvuap"]
+[ext_resource type="Script" path="res://scripts/experience_manager.gd" id="10_xyax8"]
 
 [sub_resource type="Resource" id="Resource_2vgdg"]
 script = ExtResource("3_bbwdo")
@@ -16,7 +17,7 @@ deep_start = 1
 deep_end = 2
 enemy = ExtResource("4_7e6m4")
 enemy_num = 1
-enemy_spawn_delay = 10
+enemy_spawn_delay = 0
 enemy_spawn_side = Array[int]([0])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
@@ -32,7 +33,7 @@ script = ExtResource("1_ifo3a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(33.6424, 33.6424)
-texture = ExtResource("2_xelk3")
+texture = ExtResource("2_tjbi6")
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_7tfmd")
@@ -48,6 +49,8 @@ autostart = true
 [node name="Player" parent="." instance=ExtResource("1_jiuor")]
 position = Vector2(-1.90735e-06, -167563)
 scale = Vector2(3, 3)
+bonus_speed = Vector2(100, 0)
+bonus_damage = 50.0
 
 [node name="Deepness" type="Node" parent="."]
 script = ExtResource("8_dvuap")
@@ -94,7 +97,12 @@ collision_layer = 0
 level = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel5"]
+position = Vector2(0, 16768)
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
 
+[node name="ExperienceManager" type="Node" parent="."]
+script = ExtResource("10_xyax8")
+
+[connection signal="_enemy_death" from="Enemies" to="ExperienceManager" method="_on_enemy_death_create_exp"]
 [connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_timer_timeout"]

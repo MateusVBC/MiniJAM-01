@@ -2,7 +2,7 @@ extends Node
 
 signal died(entity)
 
-var health = 0;
+var health := 0.0;
 @export var max_health = 5;
 
 func _ready():

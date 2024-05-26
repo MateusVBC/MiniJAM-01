@@ -1,12 +1,17 @@
 class_name Projectile
 extends Area2D
 
+@onready var audio_player = $AudioStreamPlayer2D
+
 @export var speed := 1000.0;
 @export var melee_damage := 1;
 @export var piercing := 1;
 var last_area = null;
 
 var movement_vector := Vector2(0, 1);
+
+func _ready():
+	audio_player.play();
 
 func _physics_process(delta):
 	global_position += movement_vector * speed * delta;
