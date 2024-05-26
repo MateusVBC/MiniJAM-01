@@ -11,9 +11,16 @@ signal projectile_shoot(projectile)
 
 var projectile_scene = preload("res://scenes/projectile.tscn");
 
-@export var speed := Vector2(10, 5);
-@export var melee_damage := 5;
+var speed := Vector2(300, 250);
+var melee_damage := 5;
+
 @export var projectile_damage := 1;
+@export var loot_range_scale := 1;
+
+@export var exp_dmg := 0;
+@export var exp_mv_spd := 0;
+@export var exp_atk_spd := 0;
+@export var exp_clct_rng := 0;
 
 var shoot_cd := false;
 var damage_cd := false;
@@ -29,7 +36,7 @@ func _physics_process(delta):
 			Input.get_axis("move_left", "move_right"),
 			Input.get_axis("move_up", "move_down")
 		)
-		* speed
+		* speed * delta
 		);
 	
 	var camera_width = (viewport_size.x / camera.zoom.x) / 2;
@@ -72,3 +79,15 @@ func shoot_projectile():
 	projectile.melee_damage = projectile_damage;
 	projectile.global_position = muzzle.global_position;
 	emit_signal("projectile_shoot", projectile); 
+
+func _on_loot_range_area_entered(area):
+	if area.is_in_group("exp"):
+		area.target = self;
+
+enum TYPES{DAMAGE, ATK_SPD, MV_SPD, COLECT_RANGE}
+func _on_collet_range_area_entered(area):
+	if area.is_in_group("exp"):
+		match area.type:
+			area.TYPES.DAMAGE:
+				
+			

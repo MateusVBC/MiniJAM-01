@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1vsufhiyg8h1"]
+[gd_scene load_steps=7 format=3 uid="uid://d1vsufhiyg8h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cda6g"]
 [ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="2_0snjm"]
@@ -7,8 +7,18 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_q13as"]
 radius = 14.0357
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqs5f"]
+radius = 144.069
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2axl"]
+radius = 22.0907
+
 [node name="Player" type="Area2D"]
 script = ExtResource("1_cda6g")
+speed = null
+melee_damage = null
+projectile_damage = null
+loot_range_scale = null
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_0snjm")]
 
@@ -23,3 +33,18 @@ texture = ExtResource("2_e7k0f")
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(0, 28)
 scale = Vector2(1, 0.969098)
+
+[node name="LootRange" type="Area2D" parent="." groups=["exp"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LootRange"]
+shape = SubResource("CircleShape2D_aqs5f")
+
+[node name="ColletRange" type="Area2D" parent="." groups=["exp"]]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ColletRange"]
+shape = SubResource("CircleShape2D_i2axl")
+
+[connection signal="area_entered" from="LootRange" to="." method="_on_loot_range_area_entered"]
+[connection signal="area_entered" from="ColletRange" to="." method="_on_collet_range_area_entered"]

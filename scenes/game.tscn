@@ -15,8 +15,8 @@ script = ExtResource("3_bbwdo")
 deep_start = 1
 deep_end = 2
 enemy = ExtResource("4_7e6m4")
-enemy_num = 20
-enemy_spawn_delay = 0
+enemy_num = 1
+enemy_spawn_delay = 10
 enemy_spawn_side = Array[int]([0])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
@@ -48,7 +48,6 @@ autostart = true
 [node name="Player" parent="." instance=ExtResource("1_jiuor")]
 position = Vector2(-1.90735e-06, -167563)
 scale = Vector2(3, 3)
-speed = Vector2(5, 5)
 
 [node name="Deepness" type="Node" parent="."]
 script = ExtResource("8_dvuap")

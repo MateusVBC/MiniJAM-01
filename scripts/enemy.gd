@@ -2,7 +2,7 @@ extends Area2D
 
 signal enemy_death(enemy);
 
-@export var speed := Vector2(3.0, -0.5);
+@export var speed := Vector2(100.0, -3);
 @export var melee_damage := 1;
 
 @onready var health = $HealthComponent;
@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if on_chase:
 		if (player.global_position.y < global_position.y &&
 		abs(player.global_position.x - global_position.x) > (speed.x + cshape.shape.radius)):
-			global_position.x += get_axis_player() * speed.x;
+			global_position.x += get_axis_player() * speed.x * delta;
 
 func _on_area_entered(area):
 	if area is Player:
