@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1vsufhiyg8h1"]
+[gd_scene load_steps=17 format=3 uid="uid://d1vsufhiyg8h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cda6g"]
 [ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="2_0snjm"]
@@ -6,10 +6,13 @@
 [ext_resource type="Script" path="res://scripts/gui_layer.gd" id="4_0rfq8"]
 [ext_resource type="FontFile" uid="uid://dyncqqpf3x8oa" path="res://assets/fonts/PixelOperator8.ttf" id="4_pv4ek"]
 [ext_resource type="Texture2D" uid="uid://dx7xx6vfahxlq" path="res://assets/sprites/GUI/exp_background.png" id="4_yoll8"]
-[ext_resource type="Texture2D" uid="uid://dlx33roiu0vlj" path="res://assets/sprites/GUI/exp_progress.png" id="5_x86ir"]
+[ext_resource type="Texture2D" uid="uid://b0rjxh2ls36je" path="res://assets/sprites/GUI/exp_progress_red.png" id="7_wp0yb"]
 [ext_resource type="Texture2D" uid="uid://cj6a5rhwov14" path="res://assets/sprites/GUI/healthbar.png" id="8_5amiv"]
 [ext_resource type="AudioStream" uid="uid://b6h0fjpes1hdl" path="res://assets/sounds/power_up.wav" id="8_aceog"]
+[ext_resource type="Texture2D" uid="uid://dmumbohgce32e" path="res://assets/sprites/GUI/exp_progress_green.png" id="8_hkq5m"]
 [ext_resource type="Texture2D" uid="uid://da53mspvqfxq4" path="res://assets/sprites/GUI/health.png" id="9_8k33k"]
+[ext_resource type="Texture2D" uid="uid://bijlx6pew70ds" path="res://assets/sprites/GUI/exp_progress_yellow.png" id="9_buhq4"]
+[ext_resource type="Texture2D" uid="uid://cf372n7pcongo" path="res://assets/sprites/GUI/exp_progress_grey.png" id="10_t4omm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q13as"]
 radius = 14.0357
@@ -76,55 +79,55 @@ offset_top = 28.0
 offset_right = 640.0
 offset_bottom = 49.0
 texture_under = ExtResource("4_yoll8")
-texture_progress = ExtResource("5_x86ir")
+texture_progress = ExtResource("7_wp0yb")
 
 [node name="MovementSpeedLabel" type="Label" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_top = 50.0
+offset_top = 62.5
 offset_right = 232.0
-offset_bottom = 73.0
+offset_bottom = 85.5
 theme_override_fonts/font = ExtResource("4_pv4ek")
 text = "Movement Speed Up"
 
 [node name="MovementSpeedProgress" type="TextureProgressBar" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_top = 77.0
+offset_top = 89.5
 offset_right = 640.0
-offset_bottom = 98.0
+offset_bottom = 110.5
 texture_under = ExtResource("4_yoll8")
-texture_progress = ExtResource("5_x86ir")
+texture_progress = ExtResource("8_hkq5m")
 
 [node name="AttackSpeedLabel" type="Label" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_top = 97.5
+offset_top = 128.75
 offset_right = 232.0
-offset_bottom = 120.5
+offset_bottom = 151.75
 theme_override_fonts/font = ExtResource("4_pv4ek")
 text = "Attack Speed Up"
 
 [node name="AttackSpeedProgress" type="TextureProgressBar" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_top = 124.5
+offset_top = 155.75
 offset_right = 640.0
-offset_bottom = 145.5
+offset_bottom = 176.75
 texture_under = ExtResource("4_yoll8")
-texture_progress = ExtResource("5_x86ir")
+texture_progress = ExtResource("9_buhq4")
 
 [node name="CollectRangeLabel" type="Label" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_top = 145.0
+offset_top = 191.25
 offset_right = 232.0
-offset_bottom = 168.0
+offset_bottom = 214.25
 theme_override_fonts/font = ExtResource("4_pv4ek")
 text = "Collect Range Up"
 
 [node name="CollectRangeProgress" type="TextureProgressBar" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_top = 172.0
+offset_top = 218.25
 offset_right = 640.0
-offset_bottom = 193.0
+offset_bottom = 239.25
 texture_under = ExtResource("4_yoll8")
-texture_progress = ExtResource("5_x86ir")
+texture_progress = ExtResource("10_t4omm")
 
 [node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
 layout_mode = 0

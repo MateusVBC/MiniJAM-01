@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://nhn45how7fvx"]
+[gd_scene load_steps=16 format=3 uid="uid://nhn45how7fvx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
 [ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="2_7tfmd"]
 [ext_resource type="Texture2D" uid="uid://dvrjqe6c1ylee" path="res://assets/sprites/background/degrade_no_dithering.png" id="2_xelk3"]
 [ext_resource type="Script" path="res://scripts/spawn_info.gd" id="3_bbwdo"]
-[ext_resource type="PackedScene" uid="uid://buelrokqbgl4p" path="res://scenes/enemies/swordfish.tscn" id="4_gkvd0"]
+[ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
+[ext_resource type="AudioStream" uid="uid://3fikvo7lsqa5" path="res://assets/sounds/Project Ex - In Orbit (freetouse.com).mp3" id="7_xpbvb"]
 [ext_resource type="PackedScene" uid="uid://cbyfeyy773i1e" path="res://scenes/deep_level.tscn" id="8_03jb3"]
 [ext_resource type="Script" path="res://scripts/deepness.gd" id="8_dvuap"]
 [ext_resource type="Script" path="res://scripts/experience_manager.gd" id="10_xyax8"]
@@ -15,16 +16,16 @@
 script = ExtResource("3_bbwdo")
 deep_start = 1
 deep_end = 2
-enemy = ExtResource("4_gkvd0")
+enemy = ExtResource("4_7e6m4")
 enemy_num = 15
 enemy_spawn_delay = 0
-enemy_spawn_side = Array[int]([1, 2])
+enemy_spawn_side = Array[int]([0])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
-size = Vector2(33395, 4058)
+size = Vector2(33395, 5170)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vd7ia"]
-size = Vector2(32274.2, 49164.7)
+size = Vector2(32274.2, 704.578)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f4lbg"]
 
@@ -46,6 +47,10 @@ autostart = true
 
 [node name="Camera" parent="." instance=ExtResource("4_ywabj")]
 
+[node name="Music" type="AudioStreamPlayer2D" parent="Camera"]
+stream = ExtResource("7_xpbvb")
+autoplay = true
+
 [node name="Player" parent="." instance=ExtResource("1_jiuor")]
 position = Vector2(0, -127464)
 scale = Vector2(3, 3)
@@ -54,21 +59,23 @@ scale = Vector2(3, 3)
 script = ExtResource("8_dvuap")
 
 [node name="DeepLevel1" parent="Deepness" instance=ExtResource("8_03jb3")]
-position = Vector2(-296, -127106)
+position = Vector2(88, -128003)
 collision_layer = 0
 level = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel1"]
+position = Vector2(0, 1360)
 shape = SubResource("RectangleShape2D_c0rlt")
 
 [node name="DeepLevel2" parent="Deepness" instance=ExtResource("8_03jb3")]
-position = Vector2(-144, -99180)
+position = Vector2(71, -98104)
 scale = Vector2(1.0083, 1.36537)
 collision_layer = 0
 level = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel2"]
-position = Vector2(-126.947, 5812.34)
+position = Vector2(-126.946, -16779.3)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vd7ia")
 
 [node name="DeepLevel3" parent="Deepness" instance=ExtResource("8_03jb3")]
@@ -90,11 +97,21 @@ scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
 
 [node name="DeepLevel5" parent="Deepness" instance=ExtResource("8_03jb3")]
-position = Vector2(-384, 183984)
+position = Vector2(15, 95036)
 collision_layer = 0
 level = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel5"]
+position = Vector2(0, 14748.8)
+scale = Vector2(1.09655, 1.10322)
+shape = SubResource("RectangleShape2D_c0rlt")
+
+[node name="DeepLevel6" parent="Deepness" instance=ExtResource("8_03jb3")]
+position = Vector2(-897, 110545)
+collision_layer = 0
+level = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel6"]
 position = Vector2(0, 16768)
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
