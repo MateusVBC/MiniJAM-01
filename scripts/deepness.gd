@@ -8,4 +8,5 @@ func _ready():
 		child.connect("_player_entered_deep_level", refresh_deep_level);
 
 func refresh_deep_level(level):
-	current_level = level;
+	if level > current_level:
+		current_level = level;
