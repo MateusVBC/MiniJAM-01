@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nhn45how7fvx"]
+[gd_scene load_steps=18 format=3 uid="uid://nhn45how7fvx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/spawn_info.gd" id="3_bbwdo"]
 [ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
+[ext_resource type="PackedScene" uid="uid://buelrokqbgl4p" path="res://scenes/enemies/swordfish.tscn" id="6_uf83s"]
 [ext_resource type="AudioStream" uid="uid://3fikvo7lsqa5" path="res://assets/sounds/Project Ex - In Orbit (freetouse.com).mp3" id="7_xpbvb"]
 [ext_resource type="PackedScene" uid="uid://cbyfeyy773i1e" path="res://scenes/deep_level.tscn" id="8_03jb3"]
 [ext_resource type="Script" path="res://scripts/deepness.gd" id="8_dvuap"]
@@ -17,17 +18,27 @@ script = ExtResource("3_bbwdo")
 deep_start = 1
 deep_end = 2
 enemy = ExtResource("4_7e6m4")
-enemy_num = 15
+enemy_num = 3
 enemy_spawn_delay = 0
 enemy_spawn_side = Array[int]([0])
 
+[sub_resource type="Resource" id="Resource_0rrpo"]
+script = ExtResource("3_bbwdo")
+deep_start = 2
+deep_end = 2
+enemy = ExtResource("6_uf83s")
+enemy_num = 20
+enemy_spawn_delay = 0
+enemy_spawn_side = Array[int]([1, 2])
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
-size = Vector2(33395, 5170)
+size = Vector2(33395, 550.954)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vd7ia"]
-size = Vector2(32274.2, 704.578)
+size = Vector2(32274.2, 387.445)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f4lbg"]
+size = Vector2(23854.4, 481.289)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ifo3a")
@@ -38,7 +49,7 @@ texture = ExtResource("2_xelk3")
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_7tfmd")
-spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_2vgdg")])
+spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_2vgdg"), SubResource("Resource_0rrpo")])
 
 [node name="Timer" type="Timer" parent="Enemies"]
 autostart = true
@@ -74,16 +85,17 @@ collision_layer = 0
 level = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel2"]
-position = Vector2(-126.946, -16779.3)
+position = Vector2(-55.5391, 1792.92)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vd7ia")
 
 [node name="DeepLevel3" parent="Deepness" instance=ExtResource("8_03jb3")]
-position = Vector2(-384, -18776)
+position = Vector2(-1552, -18192)
 collision_layer = 0
 level = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel3"]
+position = Vector2(1616, -19691)
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_f4lbg")
 
@@ -93,6 +105,7 @@ collision_layer = 0
 level = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel4"]
+position = Vector2(1611, -8729.91)
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
 
@@ -102,7 +115,7 @@ collision_layer = 0
 level = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel5"]
-position = Vector2(0, 14748.8)
+position = Vector2(128, -39779)
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
 
@@ -112,7 +125,7 @@ collision_layer = 0
 level = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel6"]
-position = Vector2(0, 16768)
+position = Vector2(896, -7424)
 scale = Vector2(1.09655, 1.10322)
 shape = SubResource("RectangleShape2D_c0rlt")
 

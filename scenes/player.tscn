@@ -27,7 +27,6 @@ radius = 22.0907
 script = ExtResource("1_cda6g")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_0snjm")]
-max_health = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 0.969098)
@@ -136,7 +135,7 @@ offset_right = 1503.75
 offset_bottom = 40.0
 scale = Vector2(4.13275, 4.13275)
 max_value = 5.0
-value = 3.0
+value = 5.0
 texture_under = ExtResource("8_5amiv")
 texture_progress = ExtResource("9_8k33k")
 

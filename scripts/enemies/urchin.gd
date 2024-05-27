@@ -5,7 +5,7 @@ signal enemy_death(enemy);
 const EXPERIENCE = preload("res://scenes/experience.tscn")
 const EXP_ENUM = preload("res://scripts/exp_enum.gd")
 
-@export var speed := Vector2(100.0, -1);
+@export var speed := Vector2(100.0, 2.5);
 @export var melee_damage := 1;
 @export var xp_drop = Vector2(1,3);
 

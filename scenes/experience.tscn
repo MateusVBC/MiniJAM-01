@@ -19,5 +19,6 @@ texture = ExtResource("1_kkjqq")
 
 [node name="snd_collected" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_y6esv")
+bus = &"XP"
 
 [connection signal="finished" from="snd_collected" to="." method="_on_snd_collected_finished"]

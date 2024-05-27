@@ -112,7 +112,7 @@ func collect_exp(type, exp):
 					audio_lvl_up.play()
 					exp_atk_spd = 0;
 					gui_layer.set_progress_attack_speed(0)
-					bonus_atack_speed += 0.01;
+					bonus_atack_speed += 0.03;
 					gui_layer.set_max_progress_attack_speed(ceil(bonus_atack_speed) * 2);
 					
 			EXP_ENUM.EXP_TYPES.MV_SPD:

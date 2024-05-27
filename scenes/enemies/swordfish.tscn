@@ -19,7 +19,7 @@ script = ExtResource("1_vkro4")
 shape = SubResource("CircleShape2D_bhtjw")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_1pae8")]
-max_health = 3
+max_health = 2
 
 [node name="Agro" type="Area2D" parent="."]
 collision_layer = 0
