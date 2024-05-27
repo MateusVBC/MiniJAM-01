@@ -6,7 +6,8 @@ signal projectile_shoot(projectile)
 const EXP_ENUM = preload("res://scripts/exp_enum.gd");
 var projectile_scene = preload("res://scenes/projectile.tscn");
 
-@onready var audio_lvl_up = $AudioLvlUp
+@onready var sfx_lvl_up = $SfxLvlUp
+@onready var sfx_hurt = $SfxHurt
 @onready var gui_layer = $GUILayer
 @onready var muzzle = $Muzzle;
 @onready var health = $HealthComponent;
@@ -99,7 +100,7 @@ func collect_exp(type, exp):
 				exp_dmg += exp;
 				gui_layer.set_progress_power(exp_dmg)
 				if exp_dmg >= ceil(bonus_damage) * 2:
-					audio_lvl_up.play()
+					sfx_lvl_up.play()
 					exp_dmg = 0;
 					gui_layer.set_progress_power(0)
 					bonus_damage += 0.5;
@@ -109,7 +110,7 @@ func collect_exp(type, exp):
 				exp_atk_spd += exp
 				gui_layer.set_progress_attack_speed(exp_atk_spd)
 				if exp_atk_spd >= ceil(bonus_atack_speed) * 2:
-					audio_lvl_up.play()
+					sfx_lvl_up.play()
 					exp_atk_spd = 0;
 					gui_layer.set_progress_attack_speed(0)
 					bonus_atack_speed += 0.03;
@@ -119,7 +120,7 @@ func collect_exp(type, exp):
 				exp_mv_spd += exp
 				gui_layer.set_progress_move_speed(exp_mv_spd)
 				if exp_mv_spd >= ceil(bonus_speed.x) * 2:
-					audio_lvl_up.play()
+					sfx_lvl_up.play()
 					exp_mv_spd = 0;
 					gui_layer.set_progress_move_speed(0)
 					bonus_speed += Vector2(1, 0.5);
@@ -130,7 +131,7 @@ func collect_exp(type, exp):
 				exp_clct_rng += exp
 				gui_layer.set_progress_collect_range(exp_clct_rng)
 				if exp_clct_rng >= ceil(loot_range_scale) * 50:
-					audio_lvl_up.play()
+					sfx_lvl_up.play()
 					exp_clct_rng = 0;
 					gui_layer.set_progress_collect_range(0)
 					loot_range_scale += 0.1;
@@ -148,6 +149,7 @@ func get_move_speed():
 func take_damage(damage):
 	if !damage_cd:
 		damage_cd = true;
+		sfx_hurt.play()
 		await get_tree().create_timer(0.5).timeout;
 		health.take_damage(damage);
 		gui_layer.set_progress_health(health.health);

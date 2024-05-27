@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1vsufhiyg8h1"]
+[gd_scene load_steps=18 format=3 uid="uid://d1vsufhiyg8h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cda6g"]
 [ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="2_0snjm"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://da53mspvqfxq4" path="res://assets/sprites/GUI/health.png" id="9_8k33k"]
 [ext_resource type="Texture2D" uid="uid://bijlx6pew70ds" path="res://assets/sprites/GUI/exp_progress_yellow.png" id="9_buhq4"]
 [ext_resource type="Texture2D" uid="uid://cf372n7pcongo" path="res://assets/sprites/GUI/exp_progress_grey.png" id="10_t4omm"]
+[ext_resource type="AudioStream" uid="uid://bg3ht886seo61" path="res://assets/sounds/hurt.wav" id="14_egw62"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q13as"]
 radius = 14.0357
@@ -139,8 +140,11 @@ value = 5.0
 texture_under = ExtResource("8_5amiv")
 texture_progress = ExtResource("9_8k33k")
 
-[node name="AudioLvlUp" type="AudioStreamPlayer2D" parent="."]
+[node name="SfxLvlUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_aceog")
+
+[node name="SfxHurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_egw62")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_player_died"]
 [connection signal="area_entered" from="LootRange" to="." method="_on_loot_range_area_entered"]

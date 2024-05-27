@@ -86,7 +86,6 @@ level = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel2"]
 position = Vector2(-55.5391, 1792.92)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vd7ia")
 
 [node name="DeepLevel3" parent="Deepness" instance=ExtResource("8_03jb3")]
