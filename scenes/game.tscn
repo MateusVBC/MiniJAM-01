@@ -70,7 +70,7 @@ scale = Vector2(3, 3)
 script = ExtResource("8_dvuap")
 
 [node name="DeepLevel1" parent="Deepness" instance=ExtResource("8_03jb3")]
-position = Vector2(88, -128003)
+position = Vector2(-15, -126760)
 collision_layer = 0
 level = 1
 
