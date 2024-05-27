@@ -1,7 +1,7 @@
 extends Node
 class_name Deepness
 
-var current_level := 1;
+var current_level := 0;
 
 func _ready():
 	for child in get_children():

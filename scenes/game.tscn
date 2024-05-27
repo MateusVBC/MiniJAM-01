@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://nhn45how7fvx"]
+[gd_scene load_steps=26 format=3 uid="uid://nhn45how7fvx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ifo3a"]
 [ext_resource type="PackedScene" uid="uid://d1vsufhiyg8h1" path="res://scenes/player.tscn" id="1_jiuor"]
@@ -8,10 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
 [ext_resource type="PackedScene" uid="uid://buelrokqbgl4p" path="res://scenes/enemies/swordfish.tscn" id="6_uf83s"]
+[ext_resource type="PackedScene" uid="uid://c2e57aoiv3ga3" path="res://scenes/enemies/super_urchin.tscn" id="7_vkaaj"]
 [ext_resource type="AudioStream" uid="uid://3fikvo7lsqa5" path="res://assets/sounds/Project Ex - In Orbit (freetouse.com).mp3" id="7_xpbvb"]
 [ext_resource type="PackedScene" uid="uid://cbyfeyy773i1e" path="res://scenes/deep_level.tscn" id="8_03jb3"]
 [ext_resource type="Script" path="res://scripts/deepness.gd" id="8_dvuap"]
 [ext_resource type="Script" path="res://scripts/experience_manager.gd" id="10_xyax8"]
+[ext_resource type="FontFile" uid="uid://durtjx2236kwb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="14_7tckn"]
 
 [sub_resource type="Resource" id="Resource_2vgdg"]
 script = ExtResource("3_bbwdo")
@@ -62,7 +64,7 @@ enemy_spawn_side = Array[int]([2])
 script = ExtResource("3_bbwdo")
 deep_start = 6
 deep_end = 8
-enemy = ExtResource("4_7e6m4")
+enemy = ExtResource("7_vkaaj")
 enemy_num = 75
 enemy_spawn_delay = 0
 enemy_spawn_side = Array[int]([0])
@@ -71,28 +73,19 @@ enemy_spawn_side = Array[int]([0])
 script = ExtResource("3_bbwdo")
 deep_start = 7
 deep_end = 8
-enemy = ExtResource("6_uf83s")
+enemy = ExtResource("7_vkaaj")
 enemy_num = 75
 enemy_spawn_delay = 3
 enemy_spawn_side = Array[int]([1, 2])
-
-[sub_resource type="Resource" id="Resource_e557c"]
-script = ExtResource("3_bbwdo")
-deep_start = 8
-deep_end = 8
-enemy = ExtResource("4_7e6m4")
-enemy_num = 400
-enemy_spawn_delay = 0
-enemy_spawn_side = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_piqde"]
 script = ExtResource("3_bbwdo")
 deep_start = 8
 deep_end = 8
-enemy = ExtResource("6_uf83s")
-enemy_num = 500
+enemy = ExtResource("7_vkaaj")
+enemy_num = 100
 enemy_spawn_delay = 0
-enemy_spawn_side = Array[int]([])
+enemy_spawn_side = Array[int]([1, 2])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
 size = Vector2(33395, 550.954)
@@ -112,7 +105,7 @@ texture = ExtResource("2_xelk3")
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_7tfmd")
-spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_2vgdg"), SubResource("Resource_0rrpo"), SubResource("Resource_k3acu"), SubResource("Resource_4vqys"), SubResource("Resource_jjjof"), SubResource("Resource_6ycnr"), SubResource("Resource_058wo"), SubResource("Resource_e557c"), SubResource("Resource_piqde")])
+spawns = Array[ExtResource("3_bbwdo")]([SubResource("Resource_2vgdg"), SubResource("Resource_0rrpo"), SubResource("Resource_k3acu"), SubResource("Resource_4vqys"), SubResource("Resource_jjjof"), SubResource("Resource_6ycnr"), SubResource("Resource_058wo"), SubResource("Resource_piqde")])
 
 [node name="Timer" type="Timer" parent="Enemies"]
 autostart = true
@@ -125,17 +118,13 @@ autostart = true
 stream = ExtResource("7_xpbvb")
 autoplay = true
 
-[node name="Player" parent="." instance=ExtResource("1_jiuor")]
-position = Vector2(0, -127464)
-scale = Vector2(3, 3)
-
 [node name="Deepness" type="Node" parent="."]
 script = ExtResource("8_dvuap")
 
 [node name="DeepLevel1" parent="Deepness" instance=ExtResource("8_03jb3")]
 position = Vector2(-15, -126760)
 collision_layer = 0
-level = 4
+level = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deepness/DeepLevel1"]
 position = Vector2(0, 1360)
@@ -213,6 +202,44 @@ shape = SubResource("RectangleShape2D_c0rlt")
 
 [node name="ExperienceManager" type="Node" parent="."]
 script = ExtResource("10_xyax8")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -348.0
+offset_top = -126342.0
+offset_right = -194.0
+offset_bottom = -126288.0
+theme_override_colors/font_color = Color(0, 0.321569, 0.560784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.466667, 0.74902, 1)
+theme_override_fonts/font = ExtResource("14_7tckn")
+text = "W A S D 
+Arrow Keys 
+to  Move
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 98.0
+offset_top = -126259.0
+offset_right = 252.0
+offset_bottom = -126205.0
+theme_override_colors/font_color = Color(0, 0.321569, 0.560784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.466667, 0.74902, 1)
+theme_override_fonts/font = ExtResource("14_7tckn")
+text = "SPACE
+to shoot"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -185.0
+offset_top = -126147.0
+offset_right = -15.0
+offset_bottom = -126093.0
+theme_override_colors/font_color = Color(0, 0.321569, 0.560784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.466667, 0.74902, 1)
+theme_override_fonts/font = ExtResource("14_7tckn")
+text = "R to restart"
+
+[node name="Player" parent="." instance=ExtResource("1_jiuor")]
+position = Vector2(0, -127464)
+scale = Vector2(3, 3)
 
 [connection signal="_enemy_death" from="Enemies" to="ExperienceManager" method="_on_enemy_death_create_exp"]
 [connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_timer_timeout"]

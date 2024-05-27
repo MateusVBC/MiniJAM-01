@@ -38,7 +38,7 @@ func _ready():
 	if flip < 0:
 		$Sprite2D.flip_h = true;
 		
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.5).timeout
 	if not entered_screen:
 		queue_free();
 	

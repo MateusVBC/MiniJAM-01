@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2e57aoiv3ga3"]
+
+[ext_resource type="Script" path="res://scripts/enemies/super_urchin.gd" id="1_qoe7d"]
+[ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="2_7tfeg"]
+[ext_resource type="Texture2D" uid="uid://dqf1wfvmctqoi" path="res://assets/sprites/enemies/urchin.png" id="3_vphn5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bhtjw"]
+radius = 31.1448
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vb1tc"]
+radius = 1069.46
+
+[node name="Urchin" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 2
+script = ExtResource("1_qoe7d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bhtjw")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_7tfeg")]
+max_health = 10
+
+[node name="Agro" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Agro"]
+shape = SubResource("CircleShape2D_vb1tc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_vphn5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="died" from="HealthComponent" to="." method="_on_death"]
+[connection signal="area_entered" from="Agro" to="." method="_on_agro_entered"]
+[connection signal="area_exited" from="Agro" to="." method="_on_agro_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
