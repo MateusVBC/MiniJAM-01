@@ -2,7 +2,7 @@ extends Area2D
 
 signal enemy_death(enemy);
 
-const Experience = preload("res://scenes/experience.tscn")
+const EXPERIENCE = preload("res://scenes/experience.tscn")
 const EXP_ENUM = preload("res://scripts/exp_enum.gd")
 
 @export var speed := Vector2(100.0, -1);
@@ -28,7 +28,7 @@ func _on_area_entered(area):
 	area.take_damage(melee_damage);
 
 func _on_death(entity):
-	var xp = Experience.instantiate();
+	var xp = EXPERIENCE.instantiate();
 	xp.global_position = global_position;
 	xp.experience = randf_range(xp_drop.x, xp_drop.y)
 	xp.type = randf_range(0, EXP_ENUM.EXP_TYPES.size()-1)

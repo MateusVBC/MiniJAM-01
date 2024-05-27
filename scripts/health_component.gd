@@ -10,7 +10,6 @@ func _ready():
 
 func take_damage(damage):
 	health -= damage;
-	print('tomou dano ' + str(damage) + ' de dano')
 	if(health <= 0):
 		emit_signal("died", self);
 		$"..".queue_free();

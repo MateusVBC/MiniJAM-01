@@ -1,24 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://cw1h2xsx4bw0i"]
+[gd_scene load_steps=6 format=3 uid="uid://buelrokqbgl4p"]
 
-[ext_resource type="Script" path="res://scripts/enemies/urchin.gd" id="1_dmf45"]
-[ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="1_v8cyx"]
-[ext_resource type="Texture2D" uid="uid://dqf1wfvmctqoi" path="res://assets/sprites/enemies/urchin.png" id="3_6r5cx"]
+[ext_resource type="Script" path="res://scripts/enemies/swordfish.gd" id="1_vkro4"]
+[ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="2_1pae8"]
+[ext_resource type="Texture2D" uid="uid://fec5hh623b3x" path="res://assets/sprites/enemies/swordfish.png" id="3_ngxss"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bhtjw"]
 radius = 31.1448
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vb1tc"]
-radius = 399.452
+radius = 636.007
 
-[node name="Urchin" type="Area2D"]
+[node name="Swordfish" type="Area2D"]
 scale = Vector2(2, 2)
 collision_layer = 2
-script = ExtResource("1_dmf45")
+script = ExtResource("1_vkro4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bhtjw")
 
-[node name="HealthComponent" parent="." instance=ExtResource("1_v8cyx")]
+[node name="HealthComponent" parent="." instance=ExtResource("2_1pae8")]
 max_health = 6
 
 [node name="Agro" type="Area2D" parent="."]
@@ -28,7 +28,7 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_vb1tc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_6r5cx")
+texture = ExtResource("3_ngxss")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -36,4 +36,5 @@ texture = ExtResource("3_6r5cx")
 [connection signal="died" from="HealthComponent" to="." method="_on_death"]
 [connection signal="area_entered" from="Agro" to="." method="_on_agro_entered"]
 [connection signal="area_exited" from="Agro" to="." method="_on_agro_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_entered_screen"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

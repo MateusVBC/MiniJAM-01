@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="2_7tfmd"]
 [ext_resource type="Texture2D" uid="uid://b18afjem4ykd4" path="res://assets/sprites/background/degrade_no_dithering_stars.png" id="2_tjbi6"]
 [ext_resource type="Script" path="res://scripts/spawn_info.gd" id="3_bbwdo"]
-[ext_resource type="PackedScene" uid="uid://cw1h2xsx4bw0i" path="res://scenes/enemies/urchin.tscn" id="4_7e6m4"]
+[ext_resource type="PackedScene" uid="uid://buelrokqbgl4p" path="res://scenes/enemies/swordfish.tscn" id="4_gkvd0"]
 [ext_resource type="PackedScene" uid="uid://bv8n3iqb7xukw" path="res://scenes/camera.tscn" id="4_ywabj"]
 [ext_resource type="PackedScene" uid="uid://cbyfeyy773i1e" path="res://scenes/deep_level.tscn" id="8_03jb3"]
 [ext_resource type="Script" path="res://scripts/deepness.gd" id="8_dvuap"]
@@ -15,10 +15,10 @@
 script = ExtResource("3_bbwdo")
 deep_start = 1
 deep_end = 2
-enemy = ExtResource("4_7e6m4")
-enemy_num = 1
+enemy = ExtResource("4_gkvd0")
+enemy_num = 15
 enemy_spawn_delay = 0
-enemy_spawn_side = Array[int]([0])
+enemy_spawn_side = Array[int]([1, 2])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0rlt"]
 size = Vector2(33395, 4058)
@@ -49,8 +49,6 @@ autostart = true
 [node name="Player" parent="." instance=ExtResource("1_jiuor")]
 position = Vector2(-1.90735e-06, -167563)
 scale = Vector2(3, 3)
-bonus_speed = Vector2(100, 0)
-bonus_damage = 50.0
 
 [node name="Deepness" type="Node" parent="."]
 script = ExtResource("8_dvuap")
