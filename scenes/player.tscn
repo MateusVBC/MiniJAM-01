@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1vsufhiyg8h1"]
+[gd_scene load_steps=14 format=3 uid="uid://d1vsufhiyg8h1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cda6g"]
 [ext_resource type="PackedScene" uid="uid://cug25e425ovsl" path="res://scenes/components/health_component.tscn" id="2_0snjm"]
 [ext_resource type="Texture2D" uid="uid://b6wdd0c2r3k6w" path="res://assets/sprites/player/player.png" id="2_e7k0f"]
+[ext_resource type="Script" path="res://scripts/gui_layer.gd" id="4_0rfq8"]
+[ext_resource type="FontFile" uid="uid://dyncqqpf3x8oa" path="res://assets/fonts/PixelOperator8.ttf" id="4_pv4ek"]
 [ext_resource type="Texture2D" uid="uid://dx7xx6vfahxlq" path="res://assets/sprites/GUI/exp_background.png" id="4_yoll8"]
 [ext_resource type="Texture2D" uid="uid://dlx33roiu0vlj" path="res://assets/sprites/GUI/exp_progress.png" id="5_x86ir"]
+[ext_resource type="Texture2D" uid="uid://cj6a5rhwov14" path="res://assets/sprites/GUI/healthbar.png" id="8_5amiv"]
+[ext_resource type="AudioStream" uid="uid://b6h0fjpes1hdl" path="res://assets/sounds/power_up.wav" id="8_aceog"]
+[ext_resource type="Texture2D" uid="uid://da53mspvqfxq4" path="res://assets/sprites/GUI/health.png" id="9_8k33k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q13as"]
 radius = 14.0357
@@ -19,6 +24,7 @@ radius = 22.0907
 script = ExtResource("1_cda6g")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_0snjm")]
+max_health = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 0.969098)
@@ -47,6 +53,9 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_i2axl")
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 0, 0)
+script = ExtResource("4_0rfq8")
 
 [node name="GUI" type="Control" parent="GUILayer"]
 layout_mode = 3
@@ -54,12 +63,83 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+[node name="PowerLabel" type="Label" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 110.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("4_pv4ek")
+text = "Power Up"
+
+[node name="PowerProgress" type="TextureProgressBar" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 640.0
+offset_bottom = 49.0
 texture_under = ExtResource("4_yoll8")
 texture_progress = ExtResource("5_x86ir")
 
+[node name="MovementSpeedLabel" type="Label" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 232.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("4_pv4ek")
+text = "Movement Speed Up"
+
+[node name="MovementSpeedProgress" type="TextureProgressBar" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_top = 77.0
+offset_right = 640.0
+offset_bottom = 98.0
+texture_under = ExtResource("4_yoll8")
+texture_progress = ExtResource("5_x86ir")
+
+[node name="AttackSpeedLabel" type="Label" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_top = 97.5
+offset_right = 232.0
+offset_bottom = 120.5
+theme_override_fonts/font = ExtResource("4_pv4ek")
+text = "Attack Speed Up"
+
+[node name="AttackSpeedProgress" type="TextureProgressBar" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_top = 124.5
+offset_right = 640.0
+offset_bottom = 145.5
+texture_under = ExtResource("4_yoll8")
+texture_progress = ExtResource("5_x86ir")
+
+[node name="CollectRangeLabel" type="Label" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_top = 145.0
+offset_right = 232.0
+offset_bottom = 168.0
+theme_override_fonts/font = ExtResource("4_pv4ek")
+text = "Collect Range Up"
+
+[node name="CollectRangeProgress" type="TextureProgressBar" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_top = 172.0
+offset_right = 640.0
+offset_bottom = 193.0
+texture_under = ExtResource("4_yoll8")
+texture_progress = ExtResource("5_x86ir")
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_left = 1463.75
+offset_right = 1503.75
+offset_bottom = 40.0
+scale = Vector2(4.13275, 4.13275)
+max_value = 5.0
+value = 3.0
+texture_under = ExtResource("8_5amiv")
+texture_progress = ExtResource("9_8k33k")
+
+[node name="AudioLvlUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_aceog")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_player_died"]
 [connection signal="area_entered" from="LootRange" to="." method="_on_loot_range_area_entered"]
 [connection signal="area_entered" from="ColletRange" to="." method="_on_collet_range_area_entered"]

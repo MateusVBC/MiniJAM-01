@@ -26,6 +26,8 @@ func _ready():
 			sprite.texture = spr_yellow
 		EXP_ENUM.EXP_TYPES.MV_SPD:
 			sprite.texture = spr_green
+		EXP_ENUM.EXP_TYPES.COLECT_RANGE:
+			sprite.texture = spr_grey
 
 func _physics_process(delta):
 	if target != null:
